@@ -67,10 +67,10 @@ public class Element {
 	}
 	
 	/**
-	 * MISSING:
-	 * Remove all Relationsships to e within the Graph
-	 * Use Graph.searchNodeByElement or build another Method
-	 * @param e
+	 * Merge given Node into this
+	 * Iterate through neighbours of e to remove this as neighbour and duplicated neighbours
+	 * Call setDegree() to calculate new Degree
+	 * @param e Node to Merge into this
 	 */
 	public void merge(Element e){
 		LinkedList<Element> tempList = e.getNeighbour();
