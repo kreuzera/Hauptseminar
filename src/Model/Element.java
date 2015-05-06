@@ -76,12 +76,19 @@ public class Element {
 		LinkedList<Element> tempList = e.getNeighbour();
 		
 		while(!tempList.isEmpty()){
-			Element temp = tempList.poll();;
+			Element temp = tempList.poll();
 			temp.removeNeighbour(e);
-			temp.addNeighbour(this);
-		}
-		
-		neighbour.addAll(e.getNeighbour());
+			if(temp!=this){
+				temp.addNeighbour(this);
+				boolean add = true;
+				for(int i = 0; i<this.neighbour.size();i++){
+					if(temp == this.neighbour.get(i))
+						add = false;
+				}
+				if(add)
+					this.addNeighbour(temp);
+			}
+		}		
 		setDegree();
 	}
 	

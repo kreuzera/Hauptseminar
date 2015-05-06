@@ -87,7 +87,8 @@ public class ReadFromFile {
 		System.out.println(g.searchNodeByElement(g.getHead().getChildren().get(0)).getNounPhrase());
 	}*/
 	
-	public static void main (String [] args){
+	public static void main (String [] args){ 
+		
 		Element e1 = new Element("1", 1);
 		Element e2 = new Element("2", 2);
 		Element e3 = new Element("3", 3);
@@ -112,5 +113,22 @@ public class ReadFromFile {
 		
 		g.linkElements(e4, e5);
 		g.linkElements(e4, e6);
+		
+		
+		e1.setDegree();
+		e2.setDegree();
+		e3.setDegree();
+		e4.setDegree();
+		e5.setDegree();
+		e6.setDegree();
+		
+		System.out.println(e1.getDegree());
+		System.out.println(e2.getDegree());
+		System.out.println(e3.getDegree());
+		System.out.println(e4.getDegree());
+		System.out.println(e5.getDegree());
+		System.out.println(e6.getDegree());
+		
+		
 	}
 }
