@@ -23,7 +23,7 @@ public class Graph {
 		if(head.getNounPhrase().equals(nounPhrase))
 			return head;
 		
-		toDo.addAll(head.getChildren());
+		toDo.addAll(head.getNeighbour());
 		System.out.println(toDo.size());
 		
 		visited.add(head);
@@ -35,7 +35,7 @@ public class Graph {
 				if(temp.getNounPhrase().equals(nounPhrase))
 					return temp;
 				
-				toDo.addAll(temp.getChildren());
+				toDo.addAll(temp.getNeighbour());
 				visited.add(temp);
 			}
 		}
@@ -56,7 +56,7 @@ public class Graph {
 		if(head==element)
 			return head;
 		
-		toDo.addAll(head.getChildren());
+		toDo.addAll(head.getNeighbour());
 		System.out.println(toDo.size());
 		
 		visited.add(head);
@@ -68,7 +68,7 @@ public class Graph {
 				if(temp==element)
 					return temp;
 				
-				toDo.addAll(temp.getChildren());
+				toDo.addAll(temp.getNeighbour());
 				visited.add(temp);
 			}
 		}
@@ -82,5 +82,10 @@ public class Graph {
 	
 	public Element getHead(){
 		return head;
+	}
+	
+	public void linkElements(Element e1, Element e2){
+		e1.addNeighbour(e2);
+		e2.addNeighbour(e1);
 	}
 }

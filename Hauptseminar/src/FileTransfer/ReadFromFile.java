@@ -55,7 +55,7 @@ public class ReadFromFile {
 		}
 	}
 	
-	public static void main(String [] args) throws IOException{
+	/*public static void main(String [] args) throws IOException{
 		ReadFromFile r = new ReadFromFile();
 		LinkedList<String> t = r.readIn();
 		
@@ -74,16 +74,43 @@ public class ReadFromFile {
 		
 		g.setHead(e[0]);
 		
-		g.getHead().addChild(e[1]);
-		g.getHead().addChild(e[2]);
+		g.getHead().addNeighbour(e[1]);
+		g.getHead().addNeighbour(e[2]);
 		
-		g.getHead().getChildren().get(0).addChild(e[3]);
-		g.getHead().getChildren().get(1).addChild(e[4]);
+		g.getHead().getChildren().get(0).addNeighbour(e[3]);
+		g.getHead().getChildren().get(1).addNeighbour(e[4]);
 		
-		g.getHead().getChildren().get(0).getChildren().get(0).addChild(g.getHead());
+		g.getHead().getChildren().get(0).getChildren().get(0).addNeighbour(g.getHead());
 		
 		System.out.println(g.searchNodeByString("Mensch").getNounPhrase());
 		
 		System.out.println(g.searchNodeByElement(g.getHead().getChildren().get(0)).getNounPhrase());
+	}*/
+	
+	public static void main (String [] args){
+		Element e1 = new Element("1", 1);
+		Element e2 = new Element("2", 2);
+		Element e3 = new Element("3", 3);
+		Element e4 = new Element("4", 4);
+		Element e5 = new Element("5", 5);
+		Element e6 = new Element("6", 6);
+		
+		Graph g = new Graph();
+		
+		g.setHead(e1);
+	
+		g.linkElements(e1, e2);
+		g.linkElements(e1, e3);
+		
+		g.linkElements(e2, e3);
+		g.linkElements(e2, e4);
+		g.linkElements(e2, e6);
+		
+		g.linkElements(e3, e4);
+		g.linkElements(e3, e5);
+		g.linkElements(e3, e6);
+		
+		g.linkElements(e4, e5);
+		g.linkElements(e4, e6);
 	}
 }

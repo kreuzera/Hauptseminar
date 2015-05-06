@@ -13,7 +13,7 @@ public class Element {
 	/**
 	 * List of all child-Elements
 	 */
-	private LinkedList<Element> child;
+	private LinkedList<Element> neighbour;
 	
 	/**
 	 * Number of Elements connected with current Element
@@ -28,7 +28,7 @@ public class Element {
 	public Element(String nounPhrase, int index){
 		this.nounPhrase = nounPhrase;
 		this.setIndex(index);
-		child = new LinkedList<Element>();
+		neighbour = new LinkedList<Element>();
 	}
 	
 
@@ -41,18 +41,18 @@ public class Element {
 	}
 
 	
-	public void addChild(Element e){
-		child.add(e);
+	public void addNeighbour(Element e){
+		neighbour.add(e);
 	}
 
 	/**
 	 * Remove Element e from List of children
 	 * @param e
 	 */
-	public void removeChild(Element e){
-		for(int i = 0; i < child.size(); i++){
-			if(child.get(i)==e){
-				child.remove(i);
+	public void removeNeighbour(Element e){
+		for(int i = 0; i < neighbour.size(); i++){
+			if(neighbour.get(i)==e){
+				neighbour.remove(i);
 				return;
 			}
 		}
@@ -63,7 +63,7 @@ public class Element {
 	}
 
 	public void setDegree() {
-		degree = child.size();
+		degree = neighbour.size();
 	}
 	
 	/**
@@ -73,12 +73,20 @@ public class Element {
 	 * @param e
 	 */
 	public void merge(Element e){
-		child.addAll(e.getChildren());
+		LinkedList<Element> tempList = e.getNeighbour();
+		
+		while(!tempList.isEmpty()){
+			Element temp = tempList.poll();;
+			temp.removeNeighbour(e);
+			temp.addNeighbour(this);
+		}
+		
+		neighbour.addAll(e.getNeighbour());
 		setDegree();
 	}
 	
-	public LinkedList<Element> getChildren(){
-		return child;
+	public LinkedList<Element> getNeighbour(){
+		return neighbour;
 	}
 
 
