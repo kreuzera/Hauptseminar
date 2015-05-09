@@ -1,0 +1,41 @@
+package FIltering;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.LinkedList;
+
+import opennlp.tools.sentdetect.SentenceDetectorME;
+import opennlp.tools.sentdetect.SentenceModel;
+
+
+public class NPFilter {
+	LinkedList<String[]> saetze = new LinkedList<String[]>();
+
+	public void NPDetect(LinkedList<String> sentences){
+		try{
+    		String[] sentences = sentenceDetectTest(bla2);
+    		
+    		for(String s : sentences)
+    			Parse(s);
+    		
+    		
+    		for (String s : nounPhrases)
+        		System.out.println(s);
+        	
+    		//Parse(sentences[0]);
+    	}
+    	catch(Exception e){
+    		e.printStackTrace();
+    	}
+	}
+	
+	public static String[] sentenceTokenizer(String text)throws IOException{
+        InputStream is = new FileInputStream("en-sent.bin");
+        SentenceModel model = new SentenceModel(is);
+        SentenceDetectorME sdetector = new SentenceDetectorME(model);
+        is.close();
+        return sdetector.sentDetect(text);
+    }
+	
+}

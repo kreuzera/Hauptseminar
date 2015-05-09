@@ -67,21 +67,28 @@ public class Element {
 	}
 	
 	/**
-	 * MISSING:
-	 * Remove all Relationsships to e within the Graph
-	 * Use Graph.searchNodeByElement or build another Method
-	 * @param e
+	 * Merge given Node into this
+	 * Iterate through neighbours of e to remove this as neighbour and duplicated neighbours
+	 * Call setDegree() to calculate new Degree
+	 * @param e Node to Merge into this
 	 */
 	public void merge(Element e){
 		LinkedList<Element> tempList = e.getNeighbour();
 		
 		while(!tempList.isEmpty()){
-			Element temp = tempList.poll();;
+			Element temp = tempList.poll();
 			temp.removeNeighbour(e);
-			temp.addNeighbour(this);
-		}
-		
-		neighbour.addAll(e.getNeighbour());
+			if(temp!=this){
+				temp.addNeighbour(this);
+				boolean add = true;
+				for(int i = 0; i<this.neighbour.size();i++){
+					if(temp == this.neighbour.get(i))
+						add = false;
+				}
+				if(add)
+					this.addNeighbour(temp);
+			}
+		}		
 		setDegree();
 	}
 	

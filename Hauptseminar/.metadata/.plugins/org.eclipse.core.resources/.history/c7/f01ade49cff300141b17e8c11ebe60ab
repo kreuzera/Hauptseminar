@@ -1,0 +1,9 @@
+package FIltering;
+
+public class NPFilter {
+
+	public void NPDetect(LinkedList<String> sentences){
+		
+	}
+	
+}
