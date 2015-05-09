@@ -34,7 +34,7 @@ public class NPFilter {
      * 
      * @param input
      */
-	private static void NPDetect(String input){
+	public static void NPDetect(String input){
 		try{
     		String[] sentences = sentenceTokenizer(testSentence);
     		//String[] sentences = sentenceTokenizer(input);
@@ -54,7 +54,7 @@ public class NPFilter {
 	 * @throws InvalidFormatException
 	 * @throws IOException
 	 */
-	private static void Parse(String sentence) throws InvalidFormatException, IOException{
+	public static void Parse(String sentence) throws InvalidFormatException, IOException{
     	InputStream is = new FileInputStream("en-parser-chunking.bin");
     	ParserModel model = new ParserModel(is);
     	opennlp.tools.parser.Parser parser = ParserFactory.create(model);
@@ -70,7 +70,7 @@ public class NPFilter {
 	 * the elements that have been tagged as "NP" (or Noun Phrase)
 	 * @param parse
 	 */
-	private static void extractNPs(Parse parse) {
+    public static void extractNPs(Parse parse) {
 	    if (parse.getType().equals("NP")) {
 	         nounPhrases.add(parse.getCoveredText());
 	    }
@@ -84,7 +84,7 @@ public class NPFilter {
      * @return
      * @throws IOException
      */
-	private static String[] sentenceTokenizer(String text)throws IOException{
+	public static String[] sentenceTokenizer(String text)throws IOException{
         InputStream is = new FileInputStream("en-sent.bin");
         SentenceModel model = new SentenceModel(is);
         SentenceDetectorME sdetector = new SentenceDetectorME(model);
